@@ -3,16 +3,6 @@
 import { Button } from '@/components/ui/button';
 import { HomeIcon } from 'lucide-react';
 import Link from 'next/link';
-import { RegistrationForm } from '@/components/RegistrationForm';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-
 
 export default function ComputersPage() {
   return (
@@ -32,14 +22,7 @@ export default function ComputersPage() {
       </header>
       <main className="flex-grow overflow-y-auto p-6 flex justify-center items-center">
         <div className="container mx-auto text-center">
-           <Dialog>
-            <DialogTrigger asChild>
-              <Button>Register</Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
-                <RegistrationForm />
-            </DialogContent>
-          </Dialog>
+          <p>Computer Science Department</p>
         </div>
       </main>
       <footer className="sticky bottom-0 z-10 bg-background/95 backdrop-blur-sm shadow-inner mt-auto">
