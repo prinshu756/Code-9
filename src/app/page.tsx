@@ -250,14 +250,16 @@ export default function Home() {
                 <CardTitle className="text-center text-base">Analytics</CardTitle>
               </CardContent>
             </Card>
-            <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
-              <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
-                <div className="p-3 rounded-full bg-indigo-100 dark:bg-indigo-900">
-                  <Pencil className="w-8 h-8 text-indigo-500" />
-                </div>
-                <CardTitle className="text-center text-base">Create</CardTitle>
-              </CardContent>
-            </Card>
+            <Link href="/admin/create" className="flex">
+              <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
+                <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
+                  <div className="p-3 rounded-full bg-indigo-100 dark:bg-indigo-900">
+                    <Pencil className="w-8 h-8 text-indigo-500" />
+                  </div>
+                  <CardTitle className="text-center text-base">Create</CardTitle>
+                </CardContent>
+              </Card>
+            </Link>
         </div>
         )}
       </main>
