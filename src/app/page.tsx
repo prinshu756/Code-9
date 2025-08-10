@@ -23,10 +23,19 @@ import { Progress } from '@/components/ui/progress';
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
+  const [progress, setProgress] = useState(30);
+  const [voted, setVoted] = useState(false);
   
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  const handleVote = () => {
+    if (!voted) {
+      setProgress(prev => Math.min(prev + 10, 100));
+      setVoted(true);
+    }
+  };
 
 
   if (!isMounted) {
@@ -123,8 +132,8 @@ export default function Home() {
                       <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">Coming soon</Badge>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                        <Button variant="link" className="p-0 h-auto justify-start text-primary">Vote for this feature</Button>
-                        <Progress value={30} className="w-1/2" />
+                        <Button variant="link" className="p-0 h-auto justify-start text-primary" onClick={handleVote} disabled={voted}>Vote for this feature</Button>
+                        <Progress value={progress} className="w-1/2" />
                     </div>
                   </div>
                 </div>
