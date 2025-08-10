@@ -68,7 +68,7 @@ export default function Home() {
       </header>
 
       <main className="flex-grow overflow-y-auto p-6 container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-6">
             <Link href="/departments">
               <Card className="hover:bg-accent/50 transition-colors">
                 <CardHeader className="flex flex-row items-center gap-4">
