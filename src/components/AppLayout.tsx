@@ -37,14 +37,16 @@ export function AppLayout({ children, hideFooter }: { children: React.ReactNode,
                 Network
               </h1>
             </div>
-            <div className="flex items-center space-x-2">
-              <Label htmlFor="role-switch" className="text-sm font-medium">{userRole === 'student' ? 'Student' : 'Admin'}</Label>
-              <Switch
-                id="role-switch"
-                checked={userRole === 'admin'}
-                onCheckedChange={toggleRole}
-              />
-            </div>
+            {isHomePage && (
+              <div className="flex items-center space-x-2">
+                <Label htmlFor="role-switch" className="text-sm font-medium">{userRole === 'student' ? 'Student' : 'Admin'}</Label>
+                <Switch
+                  id="role-switch"
+                  checked={userRole === 'admin'}
+                  onCheckedChange={toggleRole}
+                />
+              </div>
+            )}
           </div>
         </div>
       </header>
