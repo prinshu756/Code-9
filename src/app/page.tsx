@@ -122,9 +122,9 @@ export default function Home() {
             </Link>
             <Card className="col-span-2 w-full flex flex-col bg-card p-6">
                 <CardContent className="flex-grow flex flex-col items-center justify-center p-0 gap-4 text-center">
-                    <div className="flex items-center gap-2">
+                    <div className="w-full flex justify-center items-center relative">
                         <CardTitle>Exam Desk</CardTitle>
-                        <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">Coming soon</Badge>
+                        <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 absolute right-0">Coming soon</Badge>
                     </div>
                     <div className="p-3 mt-1 rounded-full bg-green-100 dark:bg-green-900">
                         <BookOpen className="w-8 h-8 text-green-500" />
