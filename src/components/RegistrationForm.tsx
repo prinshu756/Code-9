@@ -1,3 +1,4 @@
+
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -14,14 +15,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { toast } from '@/hooks/use-toast';
-import {
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-  } from '@/components/ui/card';
-import { DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { DialogHeader, DialogTitle, DialogDescription, DialogClose } from '@/components/ui/dialog';
 
 const FormSchema = z.object({
   name: z.string().min(2, {
@@ -33,7 +27,13 @@ const FormSchema = z.object({
   }),
 });
 
-export function RegistrationForm() {
+export type RegistrationFormData = z.infer<typeof FormSchema>;
+
+interface RegistrationFormProps {
+    onSubmit: (data: RegistrationFormData) => void;
+}
+
+export function RegistrationForm({ onSubmit }: RegistrationFormProps) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -42,16 +42,10 @@ export function RegistrationForm() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'Registration Successful!',
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
+  const handleFormSubmit = (data: RegistrationFormData) => {
+    onSubmit(data);
+    form.reset();
+  };
 
   return (
     <>
@@ -61,7 +55,7 @@ export function RegistrationForm() {
         </DialogHeader>
         <div className="py-4">
             <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
+            <form onSubmit={form.handleSubmit(handleFormSubmit)} className="w-full space-y-6">
                 <FormField
                 control={form.control}
                 name="name"
@@ -101,7 +95,9 @@ export function RegistrationForm() {
                     </FormItem>
                 )}
                 />
-                <Button type="submit">Submit</Button>
+                <DialogClose asChild>
+                    <Button type="submit">Submit</Button>
+                </DialogClose>
             </form>
             </Form>
         </div>
