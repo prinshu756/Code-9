@@ -21,6 +21,8 @@ interface RegistrationContextType {
   setRegisteredUser: (user: RegistrationFormData | null) => void;
   messages: Record<string, Message[]>;
   addMessage: (message: NewMessage) => void;
+  userRole: 'student' | 'admin';
+  toggleRole: () => void;
 }
 
 export const RegistrationContext = createContext<RegistrationContextType>({
@@ -28,11 +30,14 @@ export const RegistrationContext = createContext<RegistrationContextType>({
   setRegisteredUser: () => {},
   messages: {},
   addMessage: () => {},
+  userRole: 'student',
+  toggleRole: () => {},
 });
 
 export const RegistrationProvider = ({ children }: { children: ReactNode }) => {
   const [registeredUser, setRegisteredUser] = useState<RegistrationFormData | null>(null);
   const [messages, setMessages] = useState<Record<string, Message[]>>({});
+  const [userRole, setUserRole] = useState<'student' | 'admin'>('student');
 
   const addMessage = (newMessage: NewMessage) => {
     const { department, ...rest } = newMessage;
@@ -47,8 +52,12 @@ export const RegistrationProvider = ({ children }: { children: ReactNode }) => {
     }));
   };
 
+  const toggleRole = () => {
+    setUserRole(prevRole => (prevRole === 'student' ? 'admin' : 'student'));
+  };
+
   return (
-    <RegistrationContext.Provider value={{ registeredUser, setRegisteredUser, messages, addMessage }}>
+    <RegistrationContext.Provider value={{ registeredUser, setRegisteredUser, messages, addMessage, userRole, toggleRole }}>
       {children}
     </RegistrationContext.Provider>
   );

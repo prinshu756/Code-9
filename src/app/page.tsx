@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap, BookOpen, MessageSquare } from 'lucide-react';
+import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap, BookOpen, MessageSquare, ShieldCheck, PieChart, UserCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { AddLinkForm } from '@/components/AddLinkForm';
@@ -19,12 +19,14 @@ import {
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { RegistrationContext } from '@/context/RegistrationContext';
 
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
   const [progress, setProgress] = useState(0);
   const [voted, setVoted] = useState(false);
+  const { userRole } = useContext(RegistrationContext);
   
   useEffect(() => {
     setIsMounted(true);
@@ -79,6 +81,7 @@ export default function Home() {
       </header>
 
       <main className="flex-grow overflow-y-auto p-6 container mx-auto">
+        {userRole === 'student' ? (
         <div className="grid grid-cols-2 gap-6">
             <Link href="/departments" className="flex">
               <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
@@ -138,6 +141,40 @@ export default function Home() {
                 </CardContent>
             </Card>
         </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card className="col-span-1 md:col-span-2">
+              <CardHeader>
+                <CardTitle>Admin Dashboard</CardTitle>
+                <CardDescription>Welcome to the admin control panel.</CardDescription>
+              </CardHeader>
+            </Card>
+            <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
+              <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
+                <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900">
+                  <UserCheck className="w-8 h-8 text-blue-500" />
+                </div>
+                <CardTitle className="text-center text-base">Manage Users</CardTitle>
+              </CardContent>
+            </Card>
+            <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
+              <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
+                <div className="p-3 rounded-full bg-yellow-100 dark:bg-yellow-900">
+                  <PieChart className="w-8 h-8 text-yellow-500" />
+                </div>
+                <CardTitle className="text-center text-base">View Analytics</CardTitle>
+              </CardContent>
+            </Card>
+            <Card className="col-span-1 md:col-span-2 w-full hover:bg-accent/50 transition-colors flex flex-col">
+              <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
+                <div className="p-3 rounded-full bg-red-100 dark:bg-red-900">
+                  <ShieldCheck className="w-8 h-8 text-red-500" />
+                </div>
+                <CardTitle className="text-center text-base">Security Settings</CardTitle>
+              </CardContent>
+            </Card>
+        </div>
+        )}
       </main>
       <footer className="sticky bottom-0 z-10 bg-background/95 backdrop-blur-sm shadow-inner mt-auto">
         <div className="container mx-auto px-4 py-2">

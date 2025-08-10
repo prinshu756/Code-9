@@ -6,11 +6,13 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useContext } from 'react';
 import { RegistrationContext } from '@/context/RegistrationContext';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
 
 export function AppLayout({ children, hideFooter }: { children: React.ReactNode, hideFooter?: boolean }) {
   const pathname = usePathname();
   const router = useRouter();
-  const { registeredUser } = useContext(RegistrationContext);
+  const { registeredUser, userRole, toggleRole } = useContext(RegistrationContext);
   const isHomePage = pathname === '/';
 
   const getChatLink = () => {
@@ -24,18 +26,24 @@ export function AppLayout({ children, hideFooter }: { children: React.ReactNode,
     <div className="flex flex-col h-screen">
       <header className="sticky top-0 z-10 border-b border-border/40 bg-background/95 backdrop-blur-md">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-start">
-            {!isHomePage && (
-              <Button variant="ghost" size="icon" onClick={() => router.back()} className="mr-2">
-                <ChevronLeft className="w-6 h-6" />
-              </Button>
-            )}
-            <div className="flex items-center gap-4">
-              <div>
-                <h1 className="text-2xl font-bold font-headline text-primary-foreground tracking-tight">
-                  Network
-                </h1>
-              </div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              {!isHomePage && (
+                <Button variant="ghost" size="icon" onClick={() => router.back()} className="mr-2">
+                  <ChevronLeft className="w-6 h-6" />
+                </Button>
+              )}
+              <h1 className="text-2xl font-bold font-headline text-primary-foreground tracking-tight">
+                Network
+              </h1>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Label htmlFor="role-switch" className="text-sm font-medium">{userRole === 'student' ? 'Student' : 'Admin'}</Label>
+              <Switch
+                id="role-switch"
+                checked={userRole === 'admin'}
+                onCheckedChange={toggleRole}
+              />
             </div>
           </div>
         </div>
