@@ -187,7 +187,15 @@ export default function Home() {
                 <CardTitle className="text-center text-base">Users</CardTitle>
               </CardContent>
             </Card>
-            <Card className="col-span-1 md:col-span-2 w-full hover:bg-accent/50 transition-colors flex flex-col">
+            <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
+                <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
+                    <div className="p-3 rounded-full bg-green-100 dark:bg-green-900">
+                    <ShieldCheck className="w-8 h-8 text-green-500" />
+                    </div>
+                    <CardTitle className="text-center text-base">Approvals</CardTitle>
+                </CardContent>
+            </Card>
+            <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
               <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
                 <div className="p-3 rounded-full bg-yellow-100 dark:bg-yellow-900">
                   <PieChart className="w-8 h-8 text-yellow-500" />
