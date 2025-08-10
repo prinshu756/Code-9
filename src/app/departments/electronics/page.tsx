@@ -11,6 +11,13 @@ import { RegistrationContext } from '@/context/RegistrationContext';
 
 type Student = RegistrationFormData;
 
+const yearTitles: Record<number, string> = {
+  1: 'Fresher',
+  2: 'Junior',
+  3: 'Senior',
+  4: 'Super senior',
+};
+
 export default function ElectronicsPage() {
   const [students, setStudents] = useState<Student[]>([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -23,13 +30,13 @@ export default function ElectronicsPage() {
   };
 
   const studentsByYear = students.reduce((acc, student) => {
-    const year = `Year ${student.year}`;
+    const year = student.year;
     if (!acc[year]) {
       acc[year] = [];
     }
     acc[year].push(student);
     return acc;
-  }, {} as Record<string, Student[]>);
+  }, {} as Record<number, Student[]>);
 
   return (
     <AppLayout>
@@ -52,10 +59,11 @@ export default function ElectronicsPage() {
         </Card>
 
         {Object.keys(studentsByYear)
-          .sort()
+          .map(Number)
+          .sort((a, b) => b - a)
           .map(year => (
             <div key={year} className="mb-8">
-              <h2 className="text-2xl font-bold mb-4">{year}</h2>
+              <h2 className="text-2xl font-bold mb-4">{yearTitles[year]}</h2>
               <Card>
                 <CardContent className="p-0">
                   <Table>
