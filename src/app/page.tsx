@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Wand2, Link, Network as NetworkIcon, Info, Home as HomeIcon } from 'lucide-react';
+import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { AddLinkForm } from '@/components/AddLinkForm';
 import { LinkCard } from '@/components/LinkCard';
 import { SuggestedLinks } from '@/components/SuggestedLinks';
@@ -15,7 +15,9 @@ import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "@/components/ui/alert"
+} from "@/components/ui/alert";
+import Link from 'next/link';
+
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
@@ -51,7 +53,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col h-screen">
-      <header className="sticky top-0 z-10 border-b border-border/40 bg-background/90 backdrop-blur-md">
+      <header className="sticky top-0 z-10 border-b border-border/40 bg-background/95 backdrop-blur-md">
         <div className="container mx-auto px-4 py-4">
             <div className="flex items-center justify-start">
               <div className="flex items-center gap-4">
@@ -65,7 +67,61 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="flex-grow overflow-y-auto">
+      <main className="flex-grow overflow-y-auto p-6 container mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Link href="/departments">
+              <Card className="hover:bg-accent/50 transition-colors">
+                <CardHeader className="flex flex-row items-center gap-4">
+                  <div className="p-3 rounded-full bg-sky-100 dark:bg-sky-900">
+                    <Building2 className="w-8 h-8 text-sky-500" />
+                  </div>
+                  <div>
+                    <CardTitle>Departments</CardTitle>
+                    <CardDescription>Connect with academic departments.</CardDescription>
+                  </div>
+                </CardHeader>
+              </Card>
+            </Link>
+            <Link href="/clubs">
+              <Card className="hover:bg-accent/50 transition-colors">
+                <CardHeader className="flex flex-row items-center gap-4">
+                   <div className="p-3 rounded-full bg-purple-100 dark:bg-purple-900">
+                    <Users className="w-8 h-8 text-purple-500" />
+                  </div>
+                  <div>
+                    <CardTitle>Clubs</CardTitle>
+                    <CardDescription>Explore student clubs and organizations.</CardDescription>
+                  </div>
+                </CardHeader>
+              </Card>
+            </Link>
+            <Link href="/faculty">
+              <Card className="hover:bg-accent/50 transition-colors">
+                <CardHeader className="flex flex-row items-center gap-4">
+                   <div className="p-3 rounded-full bg-green-100 dark:bg-green-900">
+                    <GraduationCap className="w-8 h-8 text-green-500" />
+                  </div>
+                  <div>
+                    <CardTitle>Faculty</CardTitle>
+                    <CardDescription>Find and connect with faculty members.</CardDescription>
+                  </div>
+                </CardHeader>
+              </Card>
+            </Link>
+            <Link href="/alumni">
+               <Card className="hover:bg-accent/50 transition-colors">
+                <CardHeader className="flex flex-row items-center gap-4">
+                   <div className="p-3 rounded-full bg-orange-100 dark:bg-orange-900">
+                    <NetworkIcon className="w-8 h-8 text-orange-500" />
+                  </div>
+                  <div>
+                    <CardTitle>Alumni Network</CardTitle>
+                    <CardDescription>Engage with the alumni community.</CardDescription>
+                  </div>
+                </CardHeader>
+              </Card>
+            </Link>
+        </div>
       </main>
       <footer className="sticky bottom-0 z-10 bg-background/95 backdrop-blur-sm shadow-inner mt-auto">
         <div className="container mx-auto px-4 py-2">
