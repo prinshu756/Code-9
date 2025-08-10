@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap } from 'lucide-react';
+import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap, PenTool } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { AddLinkForm } from '@/components/AddLinkForm';
@@ -17,6 +17,7 @@ import {
   AlertTitle,
 } from "@/components/ui/alert";
 import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
 
 
 export default function Home() {
@@ -109,6 +110,22 @@ export default function Home() {
                 </CardContent>
               </Card>
             </Link>
+            <Card className="col-span-2 w-full flex flex-col bg-card">
+              <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 rounded-full bg-gray-100 dark:bg-gray-800">
+                    <PenTool className="w-8 h-8 text-gray-500" />
+                  </div>
+                  <div className="flex flex-col">
+                    <div className="flex items-center gap-2">
+                      <CardTitle>Ecam desk</CardTitle>
+                      <Badge variant="outline">Coming soon</Badge>
+                    </div>
+                    <Button variant="link" className="p-0 h-auto justify-start text-primary">Vote for this feature</Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
         </div>
       </main>
       <footer className="sticky bottom-0 z-10 bg-background/95 backdrop-blur-sm shadow-inner mt-auto">
