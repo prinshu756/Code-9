@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Wand2, Link, Network as NetworkIcon, Info } from 'lucide-react';
+import { Plus, Wand2, Link, Network as NetworkIcon, Info, Home as HomeIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { AddLinkForm } from '@/components/AddLinkForm';
@@ -136,10 +136,10 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col h-screen">
       <header className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm shadow-sm">
         <div className="container mx-auto px-4 py-4">
-            <div className="flex items-center justify-center text-center">
+            <div className="flex items-center justify-start">
               <div className="flex items-center gap-4">
                 <div className="p-2 bg-primary/20 rounded-full">
                   <NetworkIcon className="w-8 h-8 text-primary" />
@@ -148,9 +148,6 @@ export default function Home() {
                   <h1 className="text-2xl font-bold font-headline text-primary-foreground tracking-tight">
                     Network
                   </h1>
-                  <p className="text-sm text-muted-foreground font-body">
-                    Your personal corner of the internet.
-                  </p>
                 </div>
               </div>
             </div>
@@ -210,9 +207,14 @@ export default function Home() {
             )}
         </div>
       </main>
-      <footer className="sticky bottom-0 z-10 bg-background/95 backdrop-blur-sm shadow-inner">
-        <div className="container mx-auto px-4 py-4 text-center">
-            <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} Network. All rights reserved.</p>
+      <footer className="sticky bottom-0 z-10 bg-background/95 backdrop-blur-sm shadow-inner mt-auto">
+        <div className="container mx-auto px-4 py-2">
+            <div className="flex justify-center">
+                <Button variant="ghost" className="flex flex-col h-auto items-center gap-1 text-primary">
+                    <HomeIcon className="w-6 h-6" />
+                    <span className="text-xs font-semibold">Home</span>
+                </Button>
+            </div>
         </div>
       </footer>
     </div>
