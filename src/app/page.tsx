@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap, Book } from 'lucide-react';
+import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { AddLinkForm } from '@/components/AddLinkForm';
@@ -115,7 +115,7 @@ export default function Home() {
               <CardContent className="flex-grow flex flex-col justify-center p-6 gap-4">
                 <div className="flex items-center gap-4">
                   <div className="p-3 rounded-full bg-green-100 dark:bg-green-900">
-                    <Book className="w-8 h-8 text-green-500" />
+                    <BookOpen className="w-8 h-8 text-green-500" />
                   </div>
                   <div className="flex flex-col w-full">
                     <div className="flex items-center gap-2">
