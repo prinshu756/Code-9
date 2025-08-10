@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap, BookOpen, MessageSquare, ShieldCheck, PieChart, UserCheck, ChevronLeft } from 'lucide-react';
+import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap, BookOpen, MessageSquare, ShieldCheck, PieChart, UserCheck, ChevronLeft, Megaphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { AddLinkForm } from '@/components/AddLinkForm';
@@ -173,26 +173,26 @@ export default function Home() {
             </Card>
             <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
               <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
-                <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900">
-                  <UserCheck className="w-8 h-8 text-blue-500" />
+                <div className="p-3 rounded-full bg-red-100 dark:bg-red-900">
+                  <Megaphone className="w-8 h-8 text-red-500" />
                 </div>
-                <CardTitle className="text-center text-base">Manage Users</CardTitle>
+                <CardTitle className="text-center text-base">Banner</CardTitle>
               </CardContent>
             </Card>
             <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
               <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
-                <div className="p-3 rounded-full bg-yellow-100 dark:bg-yellow-900">
-                  <PieChart className="w-8 h-8 text-yellow-500" />
+                <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900">
+                  <UserCheck className="w-8 h-8 text-blue-500" />
                 </div>
-                <CardTitle className="text-center text-base">View Analytics</CardTitle>
+                <CardTitle className="text-center text-base">Users</CardTitle>
               </CardContent>
             </Card>
             <Card className="col-span-1 md:col-span-2 w-full hover:bg-accent/50 transition-colors flex flex-col">
               <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
-                <div className="p-3 rounded-full bg-red-100 dark:bg-red-900">
-                  <ShieldCheck className="w-8 h-8 text-red-500" />
+                <div className="p-3 rounded-full bg-yellow-100 dark:bg-yellow-900">
+                  <PieChart className="w-8 h-8 text-yellow-500" />
                 </div>
-                <CardTitle className="text-center text-base">Security Settings</CardTitle>
+                <CardTitle className="text-center text-base">Analytics</CardTitle>
               </CardContent>
             </Card>
         </div>
