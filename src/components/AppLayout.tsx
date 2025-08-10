@@ -1,15 +1,29 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, HomeIcon, MessageSquare } from 'lucide-react';
+import { ChevronLeft, HomeIcon, MessageSquare, Sun, Moon } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { RegistrationContext } from '@/context/RegistrationContext';
 
 export function AppLayout({ children, hideFooter }: { children: React.ReactNode, hideFooter?: boolean }) {
   const router = useRouter();
   const { registeredUser } = useContext(RegistrationContext);
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+    document.documentElement.className = savedTheme;
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.className = newTheme;
+  };
 
   const getChatLink = () => {
     if (registeredUser && registeredUser.department) {
@@ -31,21 +45,28 @@ export function AppLayout({ children, hideFooter }: { children: React.ReactNode,
                 Network
               </h1>
             </div>
-             {/* Desktop Nav */}
-             <nav className="hidden md:flex items-center gap-2">
-                <Link href="/">
-                  <Button variant="ghost" className="flex items-center gap-2 text-primary">
-                    <HomeIcon className="w-5 h-5" />
-                    <span>Home</span>
-                  </Button>
-                </Link>
-                <Link href={getChatLink()}>
-                  <Button variant="ghost" className="flex items-center gap-2 text-primary">
-                    <MessageSquare className="w-5 h-5" />
-                    <span>Chat</span>
-                  </Button>
-                </Link>
-              </nav>
+            <div className="flex items-center gap-2">
+               {/* Desktop Nav */}
+               <nav className="hidden md:flex items-center gap-2">
+                  <Link href="/">
+                    <Button variant="ghost" className="flex items-center gap-2 text-primary">
+                      <HomeIcon className="w-5 h-5" />
+                      <span>Home</span>
+                    </Button>
+                  </Link>
+                  <Link href={getChatLink()}>
+                    <Button variant="ghost" className="flex items-center gap-2 text-primary">
+                      <MessageSquare className="w-5 h-5" />
+                      <span>Chat</span>
+                    </Button>
+                  </Link>
+                </nav>
+                <Button variant="ghost" size="icon" onClick={toggleTheme}>
+                  <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
+            </div>
           </div>
         </div>
       </header>

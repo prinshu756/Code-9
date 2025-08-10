@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap, BookOpen, MessageSquare, ShieldCheck, PieChart, UserCheck, ChevronLeft, Megaphone, Terminal, Pencil } from 'lucide-react';
+import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap, BookOpen, MessageSquare, ShieldCheck, PieChart, UserCheck, ChevronLeft, Megaphone, Terminal, Pencil, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { AddLinkForm } from '@/components/AddLinkForm';
@@ -30,10 +30,24 @@ export default function Home() {
   const [progress, setProgress] = useState(0);
   const [voted, setVoted] = useState(false);
   const { registeredUser, userRole, toggleRole } = useContext(RegistrationContext);
+  const [theme, setTheme] = useState('light');
 
   const pathname = usePathname();
   const router = useRouter();
   const isHomePage = pathname === '/';
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+    document.documentElement.className = savedTheme;
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.className = newTheme;
+  };
 
   const getChatLink = () => {
     if (registeredUser && registeredUser.department) {
@@ -119,6 +133,11 @@ export default function Home() {
               </nav>
 
               <div className="flex items-center space-x-2">
+                <Button variant="ghost" size="icon" onClick={toggleTheme}>
+                  <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
                 <Label htmlFor="role-switch" className="text-sm font-medium">{userRole === 'student' ? 'Student' : 'Admin'}</Label>
                 <Switch
                   id="role-switch"
