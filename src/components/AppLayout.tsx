@@ -4,11 +4,21 @@ import { Button } from '@/components/ui/button';
 import { ChevronLeft, HomeIcon, MessageSquare } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { useContext } from 'react';
+import { RegistrationContext } from '@/context/RegistrationContext';
 
 export function AppLayout({ children, hideFooter }: { children: React.ReactNode, hideFooter?: boolean }) {
   const pathname = usePathname();
   const router = useRouter();
+  const { registeredUser } = useContext(RegistrationContext);
   const isHomePage = pathname === '/';
+
+  const getChatLink = () => {
+    if (registeredUser && registeredUser.department) {
+      return `/chat/${registeredUser.department.toLowerCase()}`;
+    }
+    return '/chat';
+  }
 
   return (
     <div className="flex flex-col h-screen">
@@ -41,7 +51,7 @@ export function AppLayout({ children, hideFooter }: { children: React.ReactNode,
                 <span className="text-xs font-semibold">Home</span>
               </Button>
             </Link>
-            <Link href="/chat">
+            <Link href={getChatLink()}>
               <Button variant="ghost" className="flex flex-col h-auto items-center gap-1 text-primary">
                 <MessageSquare className="w-6 h-6" />
                 <span className="text-xs font-semibold">Chat</span>

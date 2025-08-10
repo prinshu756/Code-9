@@ -13,33 +13,38 @@ interface Message {
 interface NewMessage {
     text: string;
     sender: RegistrationFormData;
+    department: string;
 }
 
 interface RegistrationContextType {
   registeredUser: RegistrationFormData | null;
   setRegisteredUser: (user: RegistrationFormData | null) => void;
-  messages: Message[];
+  messages: Record<string, Message[]>;
   addMessage: (message: NewMessage) => void;
 }
 
 export const RegistrationContext = createContext<RegistrationContextType>({
   registeredUser: null,
   setRegisteredUser: () => {},
-  messages: [],
+  messages: {},
   addMessage: () => {},
 });
 
 export const RegistrationProvider = ({ children }: { children: ReactNode }) => {
   const [registeredUser, setRegisteredUser] = useState<RegistrationFormData | null>(null);
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Record<string, Message[]>>({});
 
   const addMessage = (newMessage: NewMessage) => {
+    const { department, ...rest } = newMessage;
     const message: Message = {
-        ...newMessage,
+        ...rest,
         id: Date.now(),
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };
-    setMessages(prevMessages => [...prevMessages, message]);
+    setMessages(prevMessages => ({
+        ...prevMessages,
+        [department]: [...(prevMessages[department] || []), message]
+    }));
   };
 
   return (

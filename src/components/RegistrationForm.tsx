@@ -25,20 +25,23 @@ const FormSchema = z.object({
   interests: z.string().min(3, {
     message: 'Interests must be at least 3 characters.',
   }),
+  department: z.string(),
 });
 
 export type RegistrationFormData = z.infer<typeof FormSchema>;
 
 interface RegistrationFormProps {
     onSubmit: (data: RegistrationFormData) => void;
+    department: string;
 }
 
-export function RegistrationForm({ onSubmit }: RegistrationFormProps) {
+export function RegistrationForm({ onSubmit, department }: RegistrationFormProps) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       name: '',
       interests: '',
+      department: department,
     },
   });
 

@@ -45,7 +45,7 @@ export default function CivilPage() {
                 <Button>Register</Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
-                <RegistrationForm onSubmit={handleRegister} />
+                <RegistrationForm onSubmit={handleRegister} department="Civil" />
               </DialogContent>
             </Dialog>
           </CardContent>
