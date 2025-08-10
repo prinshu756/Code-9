@@ -23,7 +23,7 @@ import { Progress } from '@/components/ui/progress';
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
-  const [progress, setProgress] = useState(30);
+  const [progress, setProgress] = useState(0);
   const [voted, setVoted] = useState(false);
   
   useEffect(() => {
