@@ -77,7 +77,6 @@ export default function Home() {
                   </div>
                   <div>
                     <CardTitle>Departments</CardTitle>
-                    <CardDescription>Connect with academic departments.</CardDescription>
                   </div>
                 </CardHeader>
               </Card>
@@ -90,7 +89,6 @@ export default function Home() {
                   </div>
                   <div>
                     <CardTitle>Clubs</CardTitle>
-                    <CardDescription>Explore student clubs and organizations.</CardDescription>
                   </div>
                 </CardHeader>
               </Card>
@@ -103,7 +101,6 @@ export default function Home() {
                   </div>
                   <div>
                     <CardTitle>Faculty</CardTitle>
-                    <CardDescription>Find and connect with faculty members.</CardDescription>
                   </div>
                 </CardHeader>
               </Card>
@@ -116,7 +113,6 @@ export default function Home() {
                   </div>
                   <div>
                     <CardTitle>Alumni Network</CardTitle>
-                    <CardDescription>Engage with the alumni community.</CardDescription>
                   </div>
                 </CardHeader>
               </Card>
