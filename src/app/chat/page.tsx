@@ -2,11 +2,11 @@
 
 import { AppLayout } from '@/components/AppLayout';
 
-export default function FacultyPage() {
+export default function ChatPage() {
   return (
     <AppLayout>
       <div className="container mx-auto">
-        <p>Faculty page content goes here.</p>
+        <p>Global Chat page content goes here.</p>
       </div>
     </AppLayout>
   );
