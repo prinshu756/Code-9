@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap, BookOpen, MessageSquare, ShieldCheck, PieChart, UserCheck, ChevronLeft, Megaphone, Terminal } from 'lucide-react';
+import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap, BookOpen, MessageSquare, ShieldCheck, PieChart, UserCheck, ChevronLeft, Megaphone, Terminal, Pencil } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { AddLinkForm } from '@/components/AddLinkForm';
@@ -192,8 +192,8 @@ export default function Home() {
             </Card>
         </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="col-span-1 md:col-span-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="col-span-1 md:col-span-3">
               <CardHeader>
                 <CardTitle>Admin Dashboard</CardTitle>
                 <CardDescription>Welcome to the admin control panel.</CardDescription>
@@ -229,6 +229,14 @@ export default function Home() {
                   <PieChart className="w-8 h-8 text-yellow-500" />
                 </div>
                 <CardTitle className="text-center text-base">Analytics</CardTitle>
+              </CardContent>
+            </Card>
+            <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
+              <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
+                <div className="p-3 rounded-full bg-indigo-100 dark:bg-indigo-900">
+                  <Pencil className="w-8 h-8 text-indigo-500" />
+                </div>
+                <CardTitle className="text-center text-base">Create</CardTitle>
               </CardContent>
             </Card>
         </div>
@@ -267,3 +275,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
