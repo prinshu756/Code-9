@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap, PenTool } from 'lucide-react';
+import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap, Book } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { AddLinkForm } from '@/components/AddLinkForm';
@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/alert";
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
+import { Progress } from '@/components/ui/progress';
 
 
 export default function Home() {
@@ -111,17 +112,20 @@ export default function Home() {
               </Card>
             </Link>
             <Card className="col-span-2 w-full flex flex-col bg-card">
-              <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
+              <CardContent className="flex-grow flex flex-col justify-center p-6 gap-4">
                 <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-full bg-gray-100 dark:bg-gray-800">
-                    <PenTool className="w-8 h-8 text-gray-500" />
+                  <div className="p-3 rounded-full bg-green-100 dark:bg-green-900">
+                    <Book className="w-8 h-8 text-green-500" />
                   </div>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col w-full">
                     <div className="flex items-center gap-2">
                       <CardTitle>Ecam desk</CardTitle>
-                      <Badge variant="outline">Coming soon</Badge>
+                      <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">Coming soon</Badge>
                     </div>
-                    <Button variant="link" className="p-0 h-auto justify-start text-primary">Vote for this feature</Button>
+                    <div className="flex items-center gap-4 mt-2">
+                        <Button variant="link" className="p-0 h-auto justify-start text-primary">Vote for this feature</Button>
+                        <Progress value={30} className="w-1/2" />
+                    </div>
                   </div>
                 </div>
               </CardContent>
