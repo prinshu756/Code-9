@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { AddLinkForm } from '@/components/AddLinkForm';
 import { LinkCard } from '@/components/LinkCard';
 import { SuggestedLinks } from '@/components/SuggestedLinks';
@@ -69,52 +69,44 @@ export default function Home() {
 
       <main className="flex-grow overflow-y-auto p-6 container mx-auto">
         <div className="grid grid-cols-2 gap-6">
-            <Link href="/departments">
-              <Card className="hover:bg-accent/50 transition-colors">
-                <CardHeader className="flex flex-row items-center gap-4">
+            <Link href="/departments" className="flex">
+              <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
+                <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
                   <div className="p-3 rounded-full bg-sky-100 dark:bg-sky-900">
                     <Building2 className="w-8 h-8 text-sky-500" />
                   </div>
-                  <div>
-                    <CardTitle>Departments</CardTitle>
-                  </div>
-                </CardHeader>
+                  <CardTitle className="text-center">Departments</CardTitle>
+                </CardContent>
               </Card>
             </Link>
-            <Link href="/clubs">
-              <Card className="hover:bg-accent/50 transition-colors">
-                <CardHeader className="flex flex-row items-center gap-4">
+            <Link href="/clubs" className="flex">
+              <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
+                <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
                    <div className="p-3 rounded-full bg-purple-100 dark:bg-purple-900">
                     <Users className="w-8 h-8 text-purple-500" />
                   </div>
-                  <div>
-                    <CardTitle>Clubs</CardTitle>
-                  </div>
-                </CardHeader>
+                  <CardTitle className="text-center">Clubs</CardTitle>
+                </CardContent>
               </Card>
             </Link>
-            <Link href="/faculty">
-              <Card className="hover:bg-accent/50 transition-colors">
-                <CardHeader className="flex flex-row items-center gap-4">
+            <Link href="/faculty" className="flex">
+              <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
+                <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
                    <div className="p-3 rounded-full bg-green-100 dark:bg-green-900">
                     <GraduationCap className="w-8 h-8 text-green-500" />
                   </div>
-                  <div>
-                    <CardTitle>Faculty</CardTitle>
-                  </div>
-                </CardHeader>
+                  <CardTitle className="text-center">Faculty</CardTitle>
+                </CardContent>
               </Card>
             </Link>
-            <Link href="/alumni">
-               <Card className="hover:bg-accent/50 transition-colors">
-                <CardHeader className="flex flex-row items-center gap-4">
+            <Link href="/alumni" className="flex">
+               <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
+                <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
                    <div className="p-3 rounded-full bg-orange-100 dark:bg-orange-900">
                     <NetworkIcon className="w-8 h-8 text-orange-500" />
                   </div>
-                  <div>
-                    <CardTitle>Alumni Network</CardTitle>
-                  </div>
-                </CardHeader>
+                  <CardTitle className="text-center">Alumni Network</CardTitle>
+                </CardContent>
               </Card>
             </Link>
         </div>
