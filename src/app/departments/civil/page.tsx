@@ -14,7 +14,7 @@ export default function CivilPage() {
             <div className="flex items-center gap-4">
               <div>
                 <h1 className="text-2xl font-bold font-headline text-primary-foreground tracking-tight">
-                  Civil
+                  Network
                 </h1>
               </div>
             </div>

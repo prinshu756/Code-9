@@ -14,7 +14,7 @@ export default function ElectronicsPage() {
             <div className="flex items-center gap-4">
               <div>
                 <h1 className="text-2xl font-bold font-headline text-primary-foreground tracking-tight">
-                  Electronics
+                  Network
                 </h1>
               </div>
             </div>
