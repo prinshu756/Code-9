@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
+import { RegistrationProvider } from '@/context/RegistrationContext';
 
 export const metadata: Metadata = {
   title: 'Network',
@@ -23,7 +24,9 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased min-h-screen">
-        {children}
+        <RegistrationProvider>
+          {children}
+        </RegistrationProvider>
         <Toaster />
       </body>
     </html>

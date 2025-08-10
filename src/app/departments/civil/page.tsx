@@ -1,21 +1,24 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { RegistrationForm, RegistrationFormData } from '@/components/RegistrationForm';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { AppLayout } from '@/components/AppLayout';
+import { RegistrationContext } from '@/context/RegistrationContext';
 
 type Student = RegistrationFormData;
 
 export default function CivilPage() {
   const [students, setStudents] = useState<Student[]>([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { setRegisteredUser } = useContext(RegistrationContext);
 
   const handleRegister = (data: RegistrationFormData) => {
     setStudents(prev => [...prev, data]);
+    setRegisteredUser(data);
     setIsDialogOpen(false);
   };
 
