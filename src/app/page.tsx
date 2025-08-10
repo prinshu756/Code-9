@@ -90,6 +90,34 @@ export default function Home() {
                   </h1>
                 </div>
               </div>
+
+              {/* Desktop Nav */}
+              <nav className="hidden md:flex items-center gap-2">
+                 {userRole === 'student' ? (
+                <>
+                  <Link href="/">
+                      <Button variant="ghost" className="flex items-center gap-2 text-primary">
+                          <HomeIcon className="w-5 h-5" />
+                          <span>Home</span>
+                      </Button>
+                  </Link>
+                  <Link href={getChatLink()}>
+                      <Button variant="ghost" className="flex items-center gap-2 text-primary">
+                          <MessageSquare className="w-5 h-5" />
+                          <span>Chat</span>
+                      </Button>
+                  </Link>
+                </>
+              ) : (
+                <Link href="/">
+                    <Button variant="ghost" className="flex items-center gap-2 text-primary">
+                        <Terminal className="w-5 h-5" />
+                        <span>Console</span>
+                    </Button>
+                </Link>
+              )}
+              </nav>
+
               <div className="flex items-center space-x-2">
                 <Label htmlFor="role-switch" className="text-sm font-medium">{userRole === 'student' ? 'Student' : 'Admin'}</Label>
                 <Switch
@@ -206,7 +234,8 @@ export default function Home() {
         </div>
         )}
       </main>
-      <footer className="sticky bottom-0 z-10 bg-background/95 backdrop-blur-sm shadow-inner mt-auto">
+      {/* Mobile Footer */}
+      <footer className="sticky bottom-0 z-10 bg-background/95 backdrop-blur-sm shadow-inner mt-auto md:hidden">
         <div className="container mx-auto px-4 py-2">
             <div className="flex justify-around">
                 {userRole === 'student' ? (

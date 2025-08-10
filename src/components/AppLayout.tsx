@@ -31,12 +31,28 @@ export function AppLayout({ children, hideFooter }: { children: React.ReactNode,
                 Network
               </h1>
             </div>
+             {/* Desktop Nav */}
+             <nav className="hidden md:flex items-center gap-2">
+                <Link href="/">
+                  <Button variant="ghost" className="flex items-center gap-2 text-primary">
+                    <HomeIcon className="w-5 h-5" />
+                    <span>Home</span>
+                  </Button>
+                </Link>
+                <Link href={getChatLink()}>
+                  <Button variant="ghost" className="flex items-center gap-2 text-primary">
+                    <MessageSquare className="w-5 h-5" />
+                    <span>Chat</span>
+                  </Button>
+                </Link>
+              </nav>
           </div>
         </div>
       </header>
       <main className="flex-grow overflow-y-auto p-6 flex flex-col">{children}</main>
+      {/* Mobile Footer */}
       {!hideFooter && (
-      <footer className="sticky bottom-0 z-10 bg-background/95 backdrop-blur-sm shadow-inner mt-auto">
+      <footer className="sticky bottom-0 z-10 bg-background/95 backdrop-blur-sm shadow-inner mt-auto md:hidden">
         <div className="container mx-auto px-4 py-2">
           <div className="flex justify-around">
             <Link href="/">
