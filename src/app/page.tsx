@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap, BookOpen, MessageSquare, ShieldCheck, PieChart, UserCheck, ChevronLeft, Megaphone } from 'lucide-react';
+import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap, BookOpen, MessageSquare, ShieldCheck, PieChart, UserCheck, ChevronLeft, Megaphone, Terminal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { AddLinkForm } from '@/components/AddLinkForm';
@@ -209,18 +209,29 @@ export default function Home() {
       <footer className="sticky bottom-0 z-10 bg-background/95 backdrop-blur-sm shadow-inner mt-auto">
         <div className="container mx-auto px-4 py-2">
             <div className="flex justify-around">
+                {userRole === 'student' ? (
+                <>
+                  <Link href="/">
+                      <Button variant="ghost" className="flex flex-col h-auto items-center gap-1 text-primary">
+                          <HomeIcon className="w-6 h-6" />
+                          <span className="text-xs font-semibold">Home</span>
+                      </Button>
+                  </Link>
+                  <Link href={getChatLink()}>
+                      <Button variant="ghost" className="flex flex-col h-auto items-center gap-1 text-primary">
+                          <MessageSquare className="w-6 h-6" />
+                          <span className="text-xs font-semibold">Chat</span>
+                      </Button>
+                  </Link>
+                </>
+              ) : (
                 <Link href="/">
                     <Button variant="ghost" className="flex flex-col h-auto items-center gap-1 text-primary">
-                        <HomeIcon className="w-6 h-6" />
-                        <span className="text-xs font-semibold">Home</span>
+                        <Terminal className="w-6 h-6" />
+                        <span className="text-xs font-semibold">Console</span>
                     </Button>
                 </Link>
-                <Link href={getChatLink()}>
-                    <Button variant="ghost" className="flex flex-col h-auto items-center gap-1 text-primary">
-                        <MessageSquare className="w-6 h-6" />
-                        <span className="text-xs font-semibold">Chat</span>
-                    </Button>
-                </Link>
+              )}
             </div>
         </div>
       </footer>
