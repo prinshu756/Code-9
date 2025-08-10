@@ -63,7 +63,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen blue-theme">
       <header className="sticky top-0 z-10 border-b border-border/40 bg-background/95 backdrop-blur-md">
         <div className="container mx-auto px-4 py-4">
             <div className="flex items-center justify-start">

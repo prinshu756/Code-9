@@ -57,7 +57,7 @@ export default function ChatPage() {
   if (!registeredUser) {
     return (
         <AppLayout>
-            <div className="flex-grow container mx-auto flex items-center justify-center">
+            <div className="flex-grow container mx-auto flex items-center justify-center purple-theme">
                 <Card className="w-full max-w-md">
                     <CardHeader>
                         <CardTitle>Chat Locked</CardTitle>
@@ -76,6 +76,7 @@ export default function ChatPage() {
   }
 
   return (
+    <div className="purple-theme">
     <AppLayout hideFooter>
         <div className="flex flex-col h-full bg-muted/20">
             <div className="flex-grow container mx-auto p-4 overflow-y-auto">
@@ -121,5 +122,6 @@ export default function ChatPage() {
             </div>
         </div>
     </AppLayout>
+    </div>
   );
 }
