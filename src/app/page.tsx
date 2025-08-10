@@ -128,7 +128,7 @@ export default function Home() {
                   </div>
                   <div className="flex flex-col w-full">
                     <div className="flex items-center gap-2">
-                      <CardTitle>Ecam desk</CardTitle>
+                      <CardTitle>Exam Desk</CardTitle>
                       <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">Coming soon</Badge>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
