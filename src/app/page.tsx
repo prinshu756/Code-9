@@ -120,17 +120,20 @@ export default function Home() {
                 </CardContent>
               </Card>
             </Link>
-            <Card className="col-span-2 w-full flex flex-col bg-card">
-              <CardContent className="flex-grow flex flex-col justify-center p-6 gap-4">
-                <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-full bg-green-100 dark:bg-green-900">
+            <Card className="col-span-2 w-full flex flex-col bg-card p-4">
+              <CardContent className="flex-grow flex flex-col justify-center p-0 gap-4">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 mt-1 rounded-full bg-green-100 dark:bg-green-900">
                     <BookOpen className="w-8 h-8 text-green-500" />
                   </div>
-                  <div className="flex flex-col w-full">
+                  <div className="flex flex-col w-full gap-2">
                     <div className="flex items-center gap-2">
                       <CardTitle>Exam Desk</CardTitle>
                       <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">Coming soon</Badge>
                     </div>
+                     <p className="text-muted-foreground">
+                        One-stop platform for all study materials
+                    </p>
                     <div className="flex items-center gap-4 mt-2">
                         <Button variant="link" className="p-0 h-auto justify-start text-primary" onClick={handleVote} disabled={voted}>Vote for this feature</Button>
                         <Progress value={progress} className="w-1/2" />
