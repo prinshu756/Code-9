@@ -137,7 +137,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col h-screen">
-      <header className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm shadow-sm">
+      <header className="sticky top-0 z-10 border-b border-border/40 bg-background/80 backdrop-blur-md">
         <div className="container mx-auto px-4 py-4">
             <div className="flex items-center justify-start">
               <div className="flex items-center gap-4">
