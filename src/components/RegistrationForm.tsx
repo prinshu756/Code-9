@@ -16,7 +16,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { toast } from '@/hooks/use-toast';
 import {
-    Card,
     CardContent,
     CardDescription,
     CardHeader,
@@ -54,7 +53,7 @@ export function RegistrationForm() {
   }
 
   return (
-    <Card>
+    <>
         <CardHeader>
             <CardTitle>Register</CardTitle>
             <CardDescription>Fill out the form to register.</CardDescription>
@@ -105,6 +104,6 @@ export function RegistrationForm() {
             </form>
             </Form>
         </CardContent>
-    </Card>
+    </>
   );
 }
