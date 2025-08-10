@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap, BookOpen, MessageSquare, ShieldCheck, PieChart, UserCheck } from 'lucide-react';
+import { Plus, Wand2, Link as LinkIcon, Network as NetworkIcon, Info, Home as HomeIcon, Building2, Users, GraduationCap, BookOpen, MessageSquare, ShieldCheck, PieChart, UserCheck, ChevronLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { AddLinkForm } from '@/components/AddLinkForm';
@@ -20,13 +20,27 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { RegistrationContext } from '@/context/RegistrationContext';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
+import { usePathname, useRouter } from 'next/navigation';
 
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
   const [progress, setProgress] = useState(0);
   const [voted, setVoted] = useState(false);
-  const { userRole } = useContext(RegistrationContext);
+  const { registeredUser, userRole, toggleRole } = useContext(RegistrationContext);
+
+  const pathname = usePathname();
+  const router = useRouter();
+  const isHomePage = pathname === '/';
+
+  const getChatLink = () => {
+    if (registeredUser && registeredUser.department) {
+      return `/chat/${registeredUser.department.toLowerCase()}`;
+    }
+    return '/chat';
+  }
   
   useEffect(() => {
     setIsMounted(true);
@@ -68,13 +82,21 @@ export default function Home() {
     <div className="flex flex-col h-screen blue-theme">
       <header className="sticky top-0 z-10 border-b border-border/40 bg-background/95 backdrop-blur-md">
         <div className="container mx-auto px-4 py-4">
-            <div className="flex items-center justify-start">
+            <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <div>
                   <h1 className="text-2xl font-bold font-headline text-primary-foreground tracking-tight">
                     Network
                   </h1>
                 </div>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Label htmlFor="role-switch" className="text-sm font-medium">{userRole === 'student' ? 'Student' : 'Admin'}</Label>
+                <Switch
+                  id="role-switch"
+                  checked={userRole === 'admin'}
+                  onCheckedChange={toggleRole}
+                />
               </div>
             </div>
         </div>
@@ -185,7 +207,7 @@ export default function Home() {
                         <span className="text-xs font-semibold">Home</span>
                     </Button>
                 </Link>
-                <Link href="/chat">
+                <Link href={getChatLink()}>
                     <Button variant="ghost" className="flex flex-col h-auto items-center gap-1 text-primary">
                         <MessageSquare className="w-6 h-6" />
                         <span className="text-xs font-semibold">Chat</span>
