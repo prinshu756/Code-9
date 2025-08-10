@@ -5,7 +5,7 @@ import { ChevronLeft, HomeIcon, MessageSquare } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
-export function AppLayout({ children }: { children: React.ReactNode }) {
+export function AppLayout({ children, hideFooter }: { children: React.ReactNode, hideFooter?: boolean }) {
   const pathname = usePathname();
   const router = useRouter();
   const isHomePage = pathname === '/';
@@ -30,7 +30,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </header>
-      <main className="flex-grow overflow-y-auto p-6">{children}</main>
+      <main className="flex-grow overflow-y-auto p-6 flex flex-col">{children}</main>
+      {!hideFooter && (
       <footer className="sticky bottom-0 z-10 bg-background/95 backdrop-blur-sm shadow-inner mt-auto">
         <div className="container mx-auto px-4 py-2">
           <div className="flex justify-around">
@@ -49,6 +50,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </footer>
+      )}
     </div>
   );
 }
