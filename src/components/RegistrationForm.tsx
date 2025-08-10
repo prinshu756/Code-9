@@ -21,6 +21,7 @@ import {
     CardHeader,
     CardTitle,
   } from '@/components/ui/card';
+import { DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 
 const FormSchema = z.object({
   name: z.string().min(2, {
@@ -54,11 +55,11 @@ export function RegistrationForm() {
 
   return (
     <>
-        <CardHeader>
-            <CardTitle>Register</CardTitle>
-            <CardDescription>Fill out the form to register.</CardDescription>
-        </CardHeader>
-        <CardContent>
+        <DialogHeader>
+            <DialogTitle>Register</DialogTitle>
+            <DialogDescription>Fill out the form to register.</DialogDescription>
+        </DialogHeader>
+        <div className="py-4">
             <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
                 <FormField
@@ -100,10 +101,10 @@ export function RegistrationForm() {
                     </FormItem>
                 )}
                 />
-                <Button type="submit">Register</Button>
+                <Button type="submit">Submit</Button>
             </form>
             </Form>
-        </CardContent>
+        </div>
     </>
   );
 }
