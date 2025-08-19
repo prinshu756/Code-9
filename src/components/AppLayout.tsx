@@ -7,7 +7,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useContext, useEffect, useState } from 'react';
 import { RegistrationContext } from '@/context/RegistrationContext';
 
-export function AppLayout({ children, hideFooter }: { children: React.ReactNode, hideFooter?: boolean }) {
+export function AppLayout({ children, hideFooter, title }: { children: React.ReactNode, hideFooter?: boolean, title?: string }) {
   const router = useRouter();
   const { registeredUser } = useContext(RegistrationContext);
   const [theme, setTheme] = useState('light');
@@ -42,7 +42,7 @@ export function AppLayout({ children, hideFooter }: { children: React.ReactNode,
                 <ChevronLeft className="w-6 h-6" />
               </Button>
               <h1 className="text-2xl font-bold font-headline text-primary-foreground tracking-tight">
-                Network
+                {title || 'Network'}
               </h1>
             </div>
             <div className="flex items-center gap-2">
