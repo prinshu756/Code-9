@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useRef, useEffect, useContext } from 'react';
@@ -83,7 +84,7 @@ export default function DepartmentChatPage({ params }: { params: { department: s
 
   return (
     <div className="purple-theme">
-    <AppLayout hideFooter title={`${departmentName} Chat`}>
+    <AppLayout hideFooter title={`${departmentName}`}>
         <div className="flex flex-col h-full bg-muted/20 -m-6">
             <div className="flex-grow container mx-auto p-4 overflow-y-auto">
                  <div className="flex flex-col gap-4">
