@@ -124,7 +124,7 @@ export default function DepartmentChatPage({ params }: { params: { department: s
                 </div>
             </SheetContent>
         </Sheet>
-        <div className="flex flex-col h-full bg-muted/20 -m-6">
+        <div className="flex flex-col h-full bg-muted/20 -m-6 flex-grow">
             <div className="flex-grow p-4 overflow-y-auto">
                  <div className="flex flex-col gap-4">
                     {departmentMessages.map((msg) => (
