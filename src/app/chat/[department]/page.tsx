@@ -33,14 +33,6 @@ export default function DepartmentChatPage({ params }: { params: { department: s
 
 
   useEffect(() => {
-    if (!registeredUser) {
-        router.push('/chat');
-    } else if (registeredUser.department.toLowerCase() !== params.department) {
-        router.push(`/chat/${registeredUser.department.toLowerCase()}`);
-    }
-  }, [registeredUser, router, params.department]);
-
-  useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [departmentMessages]);
 
@@ -61,15 +53,14 @@ export default function DepartmentChatPage({ params }: { params: { department: s
     }
   };
 
-  if (!registeredUser || registeredUser.department.toLowerCase() !== params.department) {
-    // This will be handled by the useEffect redirect, but as a fallback:
+  if (params.department !== 'electronics') {
     return (
         <AppLayout>
             <div className="flex-grow container mx-auto flex items-center justify-center purple-theme">
                 <Card className="w-full max-w-md">
                     <CardHeader>
-                        <CardTitle>Access Denied</CardTitle>
-                        <CardDescription>You do not have access to this chat.</CardDescription>
+                        <CardTitle>Chat Unavailable</CardTitle>
+                        <CardDescription>This chat is currently unavailable in the prototype.</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <Link href="/departments">
@@ -84,19 +75,19 @@ export default function DepartmentChatPage({ params }: { params: { department: s
 
   return (
     <div className="purple-theme">
-    <AppLayout hideFooter title={`${departmentName}`}>
+    <AppLayout hideFooter title={departmentName}>
         <div className="flex flex-col h-full bg-muted/20 -m-6">
             <div className="flex-grow container mx-auto p-4 overflow-y-auto">
                  <div className="flex flex-col gap-4">
                     {departmentMessages.map((msg) => (
-                        <div key={msg.id} className={`flex items-end gap-2 ${msg.sender.name === registeredUser.name ? 'justify-end' : 'justify-start'}`}>
-                            {msg.sender.name !== registeredUser.name && (
+                        <div key={msg.id} className={`flex items-end gap-2 ${msg.sender.name === registeredUser?.name ? 'justify-end' : 'justify-start'}`}>
+                            {msg.sender.name !== registeredUser?.name && (
                                 <Avatar className="w-8 h-8">
                                     <AvatarFallback>{msg.sender.name.charAt(0)}</AvatarFallback>
                                 </Avatar>
                             )}
                             <div className={`rounded-lg px-4 py-2 max-w-sm ${
-                                msg.sender.name === registeredUser.name
+                                msg.sender.name === registeredUser?.name
                                 ? 'bg-primary text-primary-foreground'
                                 : 'bg-card'
                             }`}>
@@ -104,7 +95,7 @@ export default function DepartmentChatPage({ params }: { params: { department: s
                                 <p>{msg.text}</p>
                                 <p className="text-xs text-right opacity-70 mt-1">{msg.timestamp}</p>
                             </div>
-                             {msg.sender.name === registeredUser.name && (
+                             {msg.sender.name === registeredUser?.name && (
                                 <Avatar className="w-8 h-8">
                                     <AvatarFallback>{msg.sender.name.charAt(0)}</AvatarFallback>
                                 </Avatar>
@@ -121,8 +112,9 @@ export default function DepartmentChatPage({ params }: { params: { department: s
                       value={newMessage}
                       onChange={(e) => setNewMessage(e.target.value)}
                       onKeyPress={handleKeyPress}
+                      disabled={!registeredUser}
                     />
-                    <Button onClick={handleSendMessage}>
+                    <Button onClick={handleSendMessage} disabled={!registeredUser}>
                         <Send className="w-4 h-4" />
                     </Button>
                 </div>
