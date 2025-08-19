@@ -42,6 +42,7 @@ const dummyStudents: Record<string, RegistrationFormData[]> = {
     { name: 'Bob', year: 3, interests: 'Signal Processing', department: 'Electronics' },
     { name: 'Charlie', year: 2, interests: 'Analog Circuits', department: 'Electronics' },
     { name: 'Diana', year: 1, interests: 'Basic Electronics', department: 'Electronics' },
+    { name: 'Ethan', year: 1, interests: 'Digital Logic', department: 'Electronics' },
   ],
   Computers: [
     { name: 'David', year: 4, interests: 'AI/ML', department: 'Computers' },
@@ -66,9 +67,11 @@ const dummyClubs: Club[] = [
 
 const dummyMessages: Record<string, Message[]> = {
   Electronics: [
-    { id: 1, text: 'Hello everyone!', sender: dummyStudents.Electronics[0], timestamp: '10:00 AM' },
-    { id: 2, text: 'Hi Alice!', sender: dummyStudents.Electronics[1], timestamp: '10:01 AM' },
-    { id: 3, text: 'Welcome to the chat!', sender: dummyStudents.Electronics[2], timestamp: '10:02 AM' },
+    { id: 1, text: 'Hello everyone!', sender: dummyStudents.Electronics[3], timestamp: '10:00 AM' },
+    { id: 2, text: 'Hi Diana!', sender: dummyStudents.Electronics[4], timestamp: '10:01 AM' },
+    { id: 3, text: 'Any idea about the first assignment?', sender: dummyStudents.Electronics[3], timestamp: '10:02 AM' },
+    { id: 4, text: 'Not yet, maybe professor will tell us tomorrow.', sender: dummyStudents.Electronics[4], timestamp: '10:03 AM' },
+    { id: 5, text: 'This message is from a senior and should not be visible.', sender: dummyStudents.Electronics[0], timestamp: '10:05 AM' },
   ]
 };
 
@@ -85,7 +88,7 @@ export const RegistrationContext = createContext<RegistrationContextType>({
 });
 
 export const RegistrationProvider = ({ children }: { children: ReactNode }) => {
-  const [registeredUser, setRegisteredUser] = useState<RegistrationFormData | null>(dummyStudents.Electronics[0]);
+  const [registeredUser, setRegisteredUser] = useState<RegistrationFormData | null>(dummyStudents.Electronics[3]);
   const [messages, setMessages] = useState<Record<string, Message[]>>(dummyMessages);
   const [userRole, setUserRole] = useState<'student' | 'admin'>('student');
   const [clubs, setClubs] = useState<Club[]>(dummyClubs);

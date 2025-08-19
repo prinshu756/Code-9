@@ -39,9 +39,14 @@ export default function DepartmentChatPage({ params }: { params: { department: s
   const router = useRouter();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const departmentName = params.department.charAt(0).toUpperCase() + params.department.slice(1);
-  const departmentMessages = messages[departmentName] || [];
-  const departmentStudents = students[departmentName] || [];
 
+  const firstYearStudents = (students[departmentName] || []).filter(s => s.year === 1);
+  const firstYearStudentNames = new Set(firstYearStudents.map(s => s.name));
+  
+  const departmentMessages = (messages[departmentName] || []).filter(
+    msg => firstYearStudentNames.has(msg.sender.name)
+  );
+  
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [departmentMessages]);
@@ -89,18 +94,9 @@ export default function DepartmentChatPage({ params }: { params: { department: s
     );
   }
 
-  const studentsByYear = departmentStudents.reduce((acc, student) => {
-    const year = student.year;
-    if (!acc[year]) {
-      acc[year] = [];
-    }
-    acc[year].push(student);
-    return acc;
-  }, {} as Record<number, RegistrationFormData[]>);
-
   return (
     <div className="purple-theme">
-    <AppLayout hideFooter title={departmentName} onTitleClick={params.department === 'electronics' ? handleTitleClick : undefined}>
+    <AppLayout hideFooter title={`${departmentName} - 1st Year`} onTitleClick={params.department === 'electronics' ? handleTitleClick : undefined}>
         <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
             <SheetContent>
                 <SheetHeader>
@@ -109,26 +105,22 @@ export default function DepartmentChatPage({ params }: { params: { department: s
                             <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900">
                                 <Cpu className="w-8 h-8 text-blue-500" />
                             </div>
-                            <span>{departmentName}</span>
+                            <span>{departmentName} - 1st Year</span>
                         </div>
                     </SheetTitle>
                 </SheetHeader>
                 <div className="py-4 space-y-4">
-                    {Object.keys(studentsByYear).map(Number).sort((a,b) => b-a).map(year => (
-                        <div key={year}>
-                            <h3 className="font-bold mb-2">{yearTitles[year]}</h3>
-                             <div className="flex flex-col gap-2">
-                                {studentsByYear[year].map(student => (
-                                    <div key={student.name} className="flex items-center gap-2 p-2 rounded-md bg-muted/50">
-                                        <Avatar className="w-8 h-8">
-                                            <AvatarFallback>{student.name.charAt(0)}</AvatarFallback>
-                                        </Avatar>
-                                        <span>{student.name}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
+                    <h3 className="font-bold mb-2">Students</h3>
+                    <ul className="space-y-2">
+                        {firstYearStudents.map(student => (
+                            <li key={student.name} className="flex items-center gap-2 p-2 rounded-md bg-muted/50">
+                                <Avatar className="w-8 h-8">
+                                    <AvatarFallback>{student.name.charAt(0)}</AvatarFallback>
+                                </Avatar>
+                                <span>{student.name}</span>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </SheetContent>
         </Sheet>
