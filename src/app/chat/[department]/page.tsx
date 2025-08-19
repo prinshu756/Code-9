@@ -95,7 +95,7 @@ export default function DepartmentChatPage({ params }: { params: { department: s
   }
 
   return (
-    <div className="purple-theme">
+    <div className="purple-theme h-full flex flex-col">
     <AppLayout hideFooter title={`${departmentName} - 1st Year`} onTitleClick={params.department === 'electronics' ? handleTitleClick : undefined}>
         <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
             <SheetContent>
@@ -125,7 +125,7 @@ export default function DepartmentChatPage({ params }: { params: { department: s
             </SheetContent>
         </Sheet>
         <div className="flex flex-col h-full bg-muted/20 -m-6">
-            <div className="flex-grow container mx-auto p-4 overflow-y-auto">
+            <div className="flex-grow p-4 overflow-y-auto">
                  <div className="flex flex-col gap-4">
                     {departmentMessages.map((msg) => (
                         <div key={msg.id} className={`flex items-end gap-2 ${msg.sender.name === registeredUser?.name ? 'justify-end' : 'justify-start'}`}>
