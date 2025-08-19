@@ -77,8 +77,8 @@ export default function DepartmentChatPage({ params }: { params: { department: s
   if (params.department !== 'electronics') {
     return (
         <AppLayout>
-            <div className="flex-grow container mx-auto flex items-center justify-center purple-theme">
-                <Card className="w-full max-w-md">
+            <div className="flex-grow container mx-auto flex items-center justify-center">
+                <Card className="w-full max-w-md shadow-lg">
                     <CardHeader>
                         <CardTitle>Chat Unavailable</CardTitle>
                         <CardDescription>This chat is currently unavailable in the prototype.</CardDescription>
@@ -95,36 +95,38 @@ export default function DepartmentChatPage({ params }: { params: { department: s
   }
 
   return (
-    <div className="purple-theme h-full flex flex-col">
+    <div className="h-full flex flex-col">
     <AppLayout hideFooter title={departmentName} onTitleClick={params.department === 'electronics' ? handleTitleClick : undefined}>
         <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
             <SheetContent>
                 <SheetHeader>
                     <SheetTitle>
                         <div className="flex items-center gap-4">
-                            <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900">
+                            <div className="p-3 rounded-lg bg-blue-100 dark:bg-blue-900">
                                 <Cpu className="w-8 h-8 text-blue-500" />
                             </div>
-                            <span>{departmentName} - 1st Year</span>
+                            <div className="flex flex-col">
+                                <span>{departmentName}</span>
+                                <span className="text-sm font-normal text-muted-foreground">1st Year Students</span>
+                            </div>
                         </div>
                     </SheetTitle>
                 </SheetHeader>
                 <div className="py-4 space-y-4">
-                    <h3 className="font-bold mb-2">Students</h3>
                     <ul className="space-y-2">
                         {firstYearStudents.map(student => (
-                            <li key={student.name} className="flex items-center gap-2 p-2 rounded-md bg-muted/50">
-                                <Avatar className="w-8 h-8">
+                            <li key={student.name} className="flex items-center gap-3 p-2 rounded-md hover:bg-muted/50 transition-colors">
+                                <Avatar className="w-9 h-9">
                                     <AvatarFallback>{student.name.charAt(0)}</AvatarFallback>
                                 </Avatar>
-                                <span>{student.name}</span>
+                                <span className="font-medium">{student.name}</span>
                             </li>
                         ))}
                     </ul>
                 </div>
             </SheetContent>
         </Sheet>
-        <div className="flex flex-col h-full bg-muted/20 -m-6 flex-grow">
+        <div className="flex flex-col h-full bg-muted/30 dark:bg-card -m-6 flex-grow">
             <div className="flex-grow p-4 overflow-y-auto">
                  <div className="flex flex-col gap-4">
                     {departmentMessages.map((msg) => (
@@ -134,13 +136,13 @@ export default function DepartmentChatPage({ params }: { params: { department: s
                                     <AvatarFallback>{msg.sender.name.charAt(0)}</AvatarFallback>
                                 </Avatar>
                             )}
-                            <div className={`rounded-lg px-4 py-2 max-w-sm ${
+                            <div className={`rounded-lg px-4 py-2 max-w-sm shadow-sm ${
                                 msg.sender.name === registeredUser?.name
                                 ? 'bg-primary text-primary-foreground'
                                 : 'bg-card'
                             }`}>
                                 <p className="font-bold text-sm">{msg.sender.name}</p>
-                                <p>{msg.text}</p>
+                                <p className="mt-1">{msg.text}</p>
                                 <p className="text-xs text-right opacity-70 mt-1">{msg.timestamp}</p>
                             </div>
                              {msg.sender.name === registeredUser?.name && (
@@ -154,15 +156,16 @@ export default function DepartmentChatPage({ params }: { params: { department: s
                 </div>
             </div>
             <div className="p-4 bg-background border-t">
-                <div className="flex items-center gap-2">
+                <div className="relative flex items-center">
                     <Input 
                       placeholder="Type a message..." 
                       value={newMessage}
                       onChange={(e) => setNewMessage(e.target.value)}
                       onKeyPress={handleKeyPress}
                       disabled={!registeredUser}
+                      className="pr-12"
                     />
-                    <Button onClick={handleSendMessage} disabled={!registeredUser}>
+                    <Button onClick={handleSendMessage} disabled={!registeredUser} size="icon" className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8">
                         <Send className="w-4 h-4" />
                     </Button>
                 </div>

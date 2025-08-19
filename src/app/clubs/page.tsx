@@ -19,9 +19,8 @@ export default function ClubsPage() {
   const [selectedClub, setSelectedClub] = useState<Club | null>(null);
 
   return (
-    <AppLayout>
+    <AppLayout title="Clubs">
       <div className="container mx-auto">
-        <h1 className="text-3xl font-bold mb-6">Clubs</h1>
         {clubs.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-center text-muted-foreground">
             <p className="text-lg">No clubs have been added yet.</p>
@@ -32,18 +31,18 @@ export default function ClubsPage() {
             {clubs.map((club) => (
                <Dialog key={club.id}>
                 <DialogTrigger asChild>
-                  <Card className="cursor-pointer hover:bg-accent/50 transition-colors">
+                  <Card className="cursor-pointer hover:bg-accent hover:shadow-lg transition-all duration-200 group">
                     <CardContent className="flex flex-col items-center justify-center p-4 gap-4">
                       <div className="w-24 h-24 relative">
                         <Image 
                           src={club.imageUrl} 
                           alt={club.title}
                           fill
-                          className="rounded-full object-cover"
+                          className="rounded-full object-cover border-4 border-card group-hover:border-accent transition-colors duration-200"
                           data-ai-hint="club image"
                         />
                       </div>
-                      <CardTitle className="text-center text-base">{club.title}</CardTitle>
+                      <CardTitle className="text-center text-base font-semibold">{club.title}</CardTitle>
                     </CardContent>
                   </Card>
                 </DialogTrigger>

@@ -77,7 +77,7 @@ export default function Home() {
                   <div className="inline-block p-4 bg-primary/20 rounded-full">
                     <NetworkIcon className="w-12 h-12 text-primary" />
                   </div>
-                  <h1 className="mt-4 text-4xl md:text-5xl font-bold font-headline text-primary-foreground tracking-tight">
+                  <h1 className="mt-4 text-4xl md:text-5xl font-bold font-headline text-foreground tracking-tight">
                     Network
                   </h1>
                   <p className="mt-2 text-lg text-muted-foreground font-body">
@@ -98,8 +98,11 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div>
-                  <h1 className="text-2xl font-bold font-headline text-primary-foreground tracking-tight">
+                <div className="flex items-center gap-2">
+                   <div className="p-2 bg-primary/20 rounded-lg">
+                    <NetworkIcon className="w-6 h-6 text-primary" />
+                  </div>
+                  <h1 className="text-2xl font-bold font-headline text-foreground tracking-tight">
                     Network
                   </h1>
                 </div>
@@ -110,13 +113,13 @@ export default function Home() {
                  {userRole === 'student' ? (
                 <>
                   <Link href="/">
-                      <Button variant="ghost" className="flex items-center gap-2 text-primary">
+                      <Button variant="ghost" className="flex items-center gap-2 text-foreground">
                           <HomeIcon className="w-5 h-5" />
                           <span>Home</span>
                       </Button>
                   </Link>
                   <Link href={getChatLink()}>
-                      <Button variant="ghost" className="flex items-center gap-2 text-primary">
+                      <Button variant="ghost" className="flex items-center gap-2 text-foreground">
                           <MessageSquare className="w-5 h-5" />
                           <span>Chat</span>
                       </Button>
@@ -124,7 +127,7 @@ export default function Home() {
                 </>
               ) : (
                 <Link href="/">
-                    <Button variant="ghost" className="flex items-center gap-2 text-primary">
+                    <Button variant="ghost" className="flex items-center gap-2 text-foreground">
                         <Terminal className="w-5 h-5" />
                         <span>Console</span>
                     </Button>
@@ -138,12 +141,14 @@ export default function Home() {
                   <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                   <span className="sr-only">Toggle theme</span>
                 </Button>
-                <Label htmlFor="role-switch" className="text-sm font-medium">{userRole === 'student' ? 'Student' : 'Admin'}</Label>
-                <Switch
-                  id="role-switch"
-                  checked={userRole === 'admin'}
-                  onCheckedChange={toggleRole}
-                />
+                <div className="flex items-center space-x-2">
+                  <Label htmlFor="role-switch" className="text-sm font-medium">{userRole === 'student' ? 'Student' : 'Admin'}</Label>
+                  <Switch
+                    id="role-switch"
+                    checked={userRole === 'admin'}
+                    onCheckedChange={toggleRole}
+                  />
+                </div>
               </div>
             </div>
         </div>
@@ -153,7 +158,7 @@ export default function Home() {
         {userRole === 'student' ? (
         <div className="grid grid-cols-2 gap-6">
             <Link href="/departments" className="flex">
-              <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
+              <Card className="w-full hover:bg-accent hover:shadow-lg transition-all duration-200">
                 <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
                   <div className="p-3 rounded-full bg-sky-100 dark:bg-sky-900">
                     <Building2 className="w-8 h-8 text-sky-500" />
@@ -163,7 +168,7 @@ export default function Home() {
               </Card>
             </Link>
             <Link href="/clubs" className="flex">
-              <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
+              <Card className="w-full hover:bg-accent hover:shadow-lg transition-all duration-200">
                 <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
                    <div className="p-3 rounded-full bg-purple-100 dark:bg-purple-900">
                     <Users className="w-8 h-8 text-purple-500" />
@@ -173,7 +178,7 @@ export default function Home() {
               </Card>
             </Link>
             <Link href="/faculty" className="flex">
-              <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
+              <Card className="w-full hover:bg-accent hover:shadow-lg transition-all duration-200">
                 <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
                    <div className="p-3 rounded-full bg-green-100 dark:bg-green-900">
                     <GraduationCap className="w-8 h-8 text-green-500" />
@@ -183,7 +188,7 @@ export default function Home() {
               </Card>
             </Link>
             <Link href="/alumni" className="flex">
-               <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
+               <Card className="w-full hover:bg-accent hover:shadow-lg transition-all duration-200">
                 <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
                    <div className="p-3 rounded-full bg-orange-100 dark:bg-orange-900">
                     <NetworkIcon className="w-8 h-8 text-orange-500" />
@@ -204,7 +209,7 @@ export default function Home() {
                         One-stop platform for all study materials
                     </p>
                     <div className="flex items-center gap-4 mt-2 w-full justify-center">
-                        <Button variant="link" className="p-0 h-auto text-primary" onClick={handleVote} disabled={voted}>Vote for this feature</Button>
+                        <Button variant="link" className="p-0 h-auto" onClick={handleVote} disabled={voted}>Vote for this feature</Button>
                         <Progress value={progress} className="w-1/3" />
                     </div>
                 </CardContent>
@@ -218,7 +223,7 @@ export default function Home() {
                 <CardDescription>Welcome to the admin control panel.</CardDescription>
               </CardHeader>
             </Card>
-            <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
+            <Card className="w-full hover:bg-accent hover:shadow-lg transition-all duration-200">
               <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
                 <div className="p-3 rounded-full bg-red-100 dark:bg-red-900">
                   <Megaphone className="w-8 h-8 text-red-500" />
@@ -226,7 +231,7 @@ export default function Home() {
                 <CardTitle className="text-center text-base">Banner</CardTitle>
               </CardContent>
             </Card>
-            <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
+            <Card className="w-full hover:bg-accent hover:shadow-lg transition-all duration-200">
               <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
                 <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900">
                   <UserCheck className="w-8 h-8 text-blue-500" />
@@ -234,7 +239,7 @@ export default function Home() {
                 <CardTitle className="text-center text-base">Users</CardTitle>
               </CardContent>
             </Card>
-            <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
+            <Card className="w-full hover:bg-accent hover:shadow-lg transition-all duration-200">
                 <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
                     <div className="p-3 rounded-full bg-green-100 dark:bg-green-900">
                     <ShieldCheck className="w-8 h-8 text-green-500" />
@@ -242,7 +247,7 @@ export default function Home() {
                     <CardTitle className="text-center text-base">Approvals</CardTitle>
                 </CardContent>
             </Card>
-            <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
+            <Card className="w-full hover:bg-accent hover:shadow-lg transition-all duration-200">
               <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
                 <div className="p-3 rounded-full bg-yellow-100 dark:bg-yellow-900">
                   <PieChart className="w-8 h-8 text-yellow-500" />
@@ -251,7 +256,7 @@ export default function Home() {
               </CardContent>
             </Card>
             <Link href="/admin/create" className="flex">
-              <Card className="w-full hover:bg-accent/50 transition-colors flex flex-col">
+              <Card className="w-full hover:bg-accent hover:shadow-lg transition-all duration-200">
                 <CardContent className="flex-grow flex flex-col items-center justify-center p-6 gap-4">
                   <div className="p-3 rounded-full bg-indigo-100 dark:bg-indigo-900">
                     <Pencil className="w-8 h-8 text-indigo-500" />
@@ -264,7 +269,7 @@ export default function Home() {
         )}
       </main>
       {/* Mobile Footer */}
-      <footer className="sticky bottom-0 z-10 bg-background/95 backdrop-blur-sm shadow-inner mt-auto md:hidden">
+      <footer className="sticky bottom-0 z-10 bg-background/95 backdrop-blur-sm border-t mt-auto md:hidden">
         <div className="container mx-auto px-4 py-2">
             <div className="flex justify-around">
                 {userRole === 'student' ? (

@@ -43,7 +43,7 @@ export function AppLayout({ children, hideFooter, title, onTitleClick }: { child
                 <ChevronLeft className="w-6 h-6" />
               </Button>
                <div onClick={onTitleClick} className={`flex items-center gap-2 ${onTitleClick ? 'cursor-pointer' : ''}`}>
-                <h1 className="text-2xl font-bold font-headline text-primary-foreground tracking-tight">
+                <h1 className="text-2xl font-bold font-headline text-foreground tracking-tight">
                   {title || 'Network'}
                 </h1>
                 {onTitleClick && <Users className="w-5 h-5 text-primary" />}
@@ -53,13 +53,13 @@ export function AppLayout({ children, hideFooter, title, onTitleClick }: { child
                {/* Desktop Nav */}
                <nav className="hidden md:flex items-center gap-2">
                   <Link href="/">
-                    <Button variant="ghost" className="flex items-center gap-2 text-primary">
+                    <Button variant="ghost" className="flex items-center gap-2 text-foreground">
                       <HomeIcon className="w-5 h-5" />
                       <span>Home</span>
                     </Button>
                   </Link>
                   <Link href={getChatLink()}>
-                    <Button variant="ghost" className="flex items-center gap-2 text-primary">
+                    <Button variant="ghost" className="flex items-center gap-2 text-foreground">
                       <MessageSquare className="w-5 h-5" />
                       <span>Chat</span>
                     </Button>
@@ -77,7 +77,7 @@ export function AppLayout({ children, hideFooter, title, onTitleClick }: { child
       <main className="flex-grow overflow-y-auto p-6 flex flex-col">{children}</main>
       {/* Mobile Footer */}
       {!hideFooter && (
-      <footer className="sticky bottom-0 z-10 bg-background/95 backdrop-blur-sm shadow-inner mt-auto md:hidden">
+      <footer className="sticky bottom-0 z-10 bg-background/95 backdrop-blur-sm border-t mt-auto md:hidden">
         <div className="container mx-auto px-4 py-2">
           <div className="flex justify-around">
             <Link href="/">

@@ -6,60 +6,63 @@ import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { Cpu, Laptop, Zap, Cog, Construction } from 'lucide-react';
 import Link from 'next/link';
 
+const departments = [
+  {
+    name: 'Electronics',
+    href: '/departments/electronics',
+    icon: Cpu,
+    color: 'blue'
+  },
+  {
+    name: 'Computer Science',
+    href: '/departments/computers',
+    icon: Laptop,
+    color: 'indigo'
+  },
+  {
+    name: 'Electrical',
+    href: '/departments/electrical',
+    icon: Zap,
+    color: 'yellow'
+  },
+  {
+    name: 'Mechanical',
+    href: '/departments/mechanical',
+    icon: Cog,
+    color: 'gray'
+  },
+  {
+    name: 'Civil',
+    href: '/departments/civil',
+    icon: Construction,
+    color: 'orange'
+  }
+];
+
+const colorClasses: Record<string, { bg: string, text: string }> = {
+  blue: { bg: 'bg-blue-100 dark:bg-blue-900', text: 'text-blue-500' },
+  indigo: { bg: 'bg-indigo-100 dark:bg-indigo-900', text: 'text-indigo-500' },
+  yellow: { bg: 'bg-yellow-100 dark:bg-yellow-900', text: 'text-yellow-500' },
+  gray: { bg: 'bg-gray-100 dark:bg-gray-900', text: 'text-gray-500' },
+  orange: { bg: 'bg-orange-100 dark:bg-orange-900', text: 'text-orange-500' },
+}
+
 export default function DepartmentsPage() {
   return (
-    <AppLayout>
+    <AppLayout title="Departments">
       <div className="flex flex-col space-y-4">
-        <Link href="/departments/electronics">
-          <Card className="hover:bg-accent/50 transition-colors">
-            <CardContent className="flex items-center p-4 gap-4">
-              <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900">
-                <Cpu className="w-8 h-8 text-blue-500" />
-              </div>
-              <CardTitle className="text-lg">Electronics</CardTitle>
-            </CardContent>
-          </Card>
-        </Link>
-        <Link href="/departments/computers">
-          <Card className="hover:bg-accent/50 transition-colors">
-            <CardContent className="flex items-center p-4 gap-4">
-              <div className="p-3 rounded-full bg-indigo-100 dark:bg-indigo-900">
-                <Laptop className="w-8 h-8 text-indigo-500" />
-              </div>
-              <CardTitle className="text-lg">Computer Science</CardTitle>
-            </CardContent>
-          </Card>
-        </Link>
-        <Link href="/departments/electrical">
-          <Card className="hover:bg-accent/50 transition-colors">
-            <CardContent className="flex items-center p-4 gap-4">
-              <div className="p-3 rounded-full bg-yellow-100 dark:bg-yellow-900">
-                <Zap className="w-8 h-8 text-yellow-500" />
-              </div>
-              <CardTitle className="text-lg">Electrical</CardTitle>
-            </CardContent>
-          </Card>
-        </Link>
-        <Link href="/departments/mechanical">
-          <Card className="hover:bg-accent/50 transition-colors">
-            <CardContent className="flex items-center p-4 gap-4">
-              <div className="p-3 rounded-full bg-gray-100 dark:bg-gray-900">
-                <Cog className="w-8 h-8 text-gray-500" />
-              </div>
-              <CardTitle className="text-lg">Mechanical</CardTitle>
-            </CardContent>
-          </Card>
-        </Link>
-        <Link href="/departments/civil">
-          <Card className="hover:bg-accent/50 transition-colors">
-            <CardContent className="flex items-center p-4 gap-4">
-              <div className="p-3 rounded-full bg-orange-100 dark:bg-orange-900">
-                <Construction className="w-8 h-8 text-orange-500" />
-              </div>
-              <CardTitle className="text-lg">Civil</CardTitle>
-            </CardContent>
-          </Card>
-        </Link>
+        {departments.map((dept) => (
+          <Link href={dept.href} key={dept.name}>
+            <Card className="hover:bg-accent hover:shadow-md transition-all duration-200">
+              <CardContent className="flex items-center p-4 gap-4">
+                <div className={`p-3 rounded-lg ${colorClasses[dept.color].bg}`}>
+                  <dept.icon className={`w-8 h-8 ${colorClasses[dept.color].text}`} />
+                </div>
+                <CardTitle className="text-lg font-semibold">{dept.name}</CardTitle>
+              </CardContent>
+            </Card>
+          </Link>
+        ))}
       </div>
     </AppLayout>
   );
