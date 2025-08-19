@@ -83,11 +83,8 @@ export default function DepartmentChatPage({ params }: { params: { department: s
 
   return (
     <div className="purple-theme">
-    <AppLayout hideFooter>
-        <div className="flex flex-col h-full bg-muted/20">
-            <div className="p-4 border-b bg-background">
-                <h2 className="text-xl font-bold text-center">{departmentName} Chat</h2>
-            </div>
+    <AppLayout hideFooter title={`${departmentName} Chat`}>
+        <div className="flex flex-col h-full bg-muted/20 -m-6">
             <div className="flex-grow container mx-auto p-4 overflow-y-auto">
                  <div className="flex flex-col gap-4">
                     {departmentMessages.map((msg) => (
