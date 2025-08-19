@@ -1,13 +1,14 @@
+
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, HomeIcon, MessageSquare, Sun, Moon } from 'lucide-react';
+import { ChevronLeft, HomeIcon, MessageSquare, Sun, Moon, Users } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useContext, useEffect, useState } from 'react';
 import { RegistrationContext } from '@/context/RegistrationContext';
 
-export function AppLayout({ children, hideFooter, title }: { children: React.ReactNode, hideFooter?: boolean, title?: string }) {
+export function AppLayout({ children, hideFooter, title, onTitleClick }: { children: React.ReactNode, hideFooter?: boolean, title?: string, onTitleClick?: () => void }) {
   const router = useRouter();
   const { registeredUser } = useContext(RegistrationContext);
   const [theme, setTheme] = useState('light');
@@ -41,9 +42,12 @@ export function AppLayout({ children, hideFooter, title }: { children: React.Rea
               <Button variant="ghost" size="icon" onClick={() => router.back()} className="mr-2">
                 <ChevronLeft className="w-6 h-6" />
               </Button>
-              <h1 className="text-2xl font-bold font-headline text-primary-foreground tracking-tight">
-                {title || 'Network'}
-              </h1>
+               <div onClick={onTitleClick} className={`flex items-center gap-2 ${onTitleClick ? 'cursor-pointer' : ''}`}>
+                <h1 className="text-2xl font-bold font-headline text-primary-foreground tracking-tight">
+                  {title || 'Network'}
+                </h1>
+                {onTitleClick && <Users className="w-5 h-5 text-primary" />}
+              </div>
             </div>
             <div className="flex items-center gap-2">
                {/* Desktop Nav */}

@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { createContext, useState, ReactNode } from 'react';
@@ -32,6 +33,7 @@ interface RegistrationContextType {
   toggleRole: () => void;
   clubs: Club[];
   addClub: (club: Omit<Club, 'id'>) => void;
+  students: Record<string, RegistrationFormData[]>;
 }
 
 const dummyStudents: Record<string, RegistrationFormData[]> = {
@@ -39,6 +41,7 @@ const dummyStudents: Record<string, RegistrationFormData[]> = {
     { name: 'Alice', year: 4, interests: 'VLSI, Embedded Systems', department: 'Electronics' },
     { name: 'Bob', year: 3, interests: 'Signal Processing', department: 'Electronics' },
     { name: 'Charlie', year: 2, interests: 'Analog Circuits', department: 'Electronics' },
+    { name: 'Diana', year: 1, interests: 'Basic Electronics', department: 'Electronics' },
   ],
   Computers: [
     { name: 'David', year: 4, interests: 'AI/ML', department: 'Computers' },
@@ -78,6 +81,7 @@ export const RegistrationContext = createContext<RegistrationContextType>({
   toggleRole: () => {},
   clubs: [],
   addClub: () => {},
+  students: {},
 });
 
 export const RegistrationProvider = ({ children }: { children: ReactNode }) => {
@@ -85,6 +89,7 @@ export const RegistrationProvider = ({ children }: { children: ReactNode }) => {
   const [messages, setMessages] = useState<Record<string, Message[]>>(dummyMessages);
   const [userRole, setUserRole] = useState<'student' | 'admin'>('student');
   const [clubs, setClubs] = useState<Club[]>(dummyClubs);
+  const [students, setStudents] = useState<Record<string, RegistrationFormData[]>>(dummyStudents);
 
   const addMessage = (newMessage: NewMessage) => {
     const { department, ...rest } = newMessage;
@@ -109,7 +114,7 @@ export const RegistrationProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <RegistrationContext.Provider value={{ registeredUser, setRegisteredUser, messages, addMessage, userRole, toggleRole, clubs, addClub }}>
+    <RegistrationContext.Provider value={{ registeredUser, setRegisteredUser, messages, addMessage, userRole, toggleRole, clubs, addClub, students }}>
       {children}
     </RegistrationContext.Provider>
   );
