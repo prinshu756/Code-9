@@ -96,7 +96,7 @@ export default function DepartmentChatPage({ params }: { params: { department: s
 
   return (
     <div className="purple-theme h-full flex flex-col">
-    <AppLayout hideFooter title={`${departmentName} - 1st Year`} onTitleClick={params.department === 'electronics' ? handleTitleClick : undefined}>
+    <AppLayout hideFooter title={departmentName} onTitleClick={params.department === 'electronics' ? handleTitleClick : undefined}>
         <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
             <SheetContent>
                 <SheetHeader>
