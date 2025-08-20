@@ -116,14 +116,18 @@ export default function DepartmentChatPage({ params }: { params: { department: s
                 <div className="py-4 space-y-4">
                     <div className="space-y-2">
                         <h3 className="text-sm font-medium text-muted-foreground px-2">Resources</h3>
-                        <Button variant="ghost" className="w-full justify-start gap-2">
-                            <ImageIcon className="w-5 h-5" />
-                            <span>Media & Gallery</span>
-                        </Button>
-                        <Button variant="ghost" className="w-full justify-start gap-2">
-                            <FileText className="w-5 h-5" />
-                            <span>Documents</span>
-                        </Button>
+                        <Link href={`/chat/${params.department}/media`} passHref>
+                            <Button variant="ghost" className="w-full justify-start gap-2">
+                                <ImageIcon className="w-5 h-5" />
+                                <span>Media & Gallery</span>
+                            </Button>
+                        </Link>
+                        <Link href={`/chat/${params.department}/documents`} passHref>
+                            <Button variant="ghost" className="w-full justify-start gap-2">
+                                <FileText className="w-5 h-5" />
+                                <span>Documents</span>
+                            </Button>
+                        </Link>
                     </div>
                     <Separator />
                     <div className="space-y-2">
