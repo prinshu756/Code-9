@@ -5,7 +5,7 @@ import { useState, useRef, useEffect, useContext } from 'react';
 import { AppLayout } from '@/components/AppLayout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Send, User, Cpu } from 'lucide-react';
+import { Send, User, Cpu, FileText, Image as ImageIcon } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { RegistrationContext } from '@/context/RegistrationContext';
 import { useRouter } from 'next/navigation';
@@ -13,6 +13,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import Link from 'next/link';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { RegistrationFormData } from '@/components/RegistrationForm';
+import { Separator } from '@/components/ui/separator';
 
 interface Message {
   id: number;
@@ -113,16 +114,31 @@ export default function DepartmentChatPage({ params }: { params: { department: s
                     </SheetTitle>
                 </SheetHeader>
                 <div className="py-4 space-y-4">
-                    <ul className="space-y-2">
-                        {firstYearStudents.map(student => (
-                            <li key={student.name} className="flex items-center gap-3 p-2 rounded-md hover:bg-muted/50 transition-colors">
-                                <Avatar className="w-9 h-9">
-                                    <AvatarFallback>{student.name.charAt(0)}</AvatarFallback>
-                                </Avatar>
-                                <span className="font-medium">{student.name}</span>
-                            </li>
-                        ))}
-                    </ul>
+                    <div className="space-y-2">
+                        <h3 className="text-sm font-medium text-muted-foreground px-2">Resources</h3>
+                        <Button variant="ghost" className="w-full justify-start gap-2">
+                            <ImageIcon className="w-5 h-5" />
+                            <span>Media & Gallery</span>
+                        </Button>
+                        <Button variant="ghost" className="w-full justify-start gap-2">
+                            <FileText className="w-5 h-5" />
+                            <span>Documents</span>
+                        </Button>
+                    </div>
+                    <Separator />
+                    <div className="space-y-2">
+                        <h3 className="text-sm font-medium text-muted-foreground px-2">Students</h3>
+                        <ul className="space-y-1">
+                            {firstYearStudents.map(student => (
+                                <li key={student.name} className="flex items-center gap-3 p-2 rounded-md hover:bg-muted/50 transition-colors">
+                                    <Avatar className="w-9 h-9">
+                                        <AvatarFallback>{student.name.charAt(0)}</AvatarFallback>
+                                    </Avatar>
+                                    <span className="font-medium">{student.name}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             </SheetContent>
         </Sheet>
