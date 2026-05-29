@@ -1,7 +1,5 @@
-
-'use client';
-
-import { useState, useRef, useEffect, useContext } from 'react';
+"use client"
+import { useState, useRef, useEffect, useContext, use } from 'react';
 import { AppLayout } from '@/components/AppLayout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,6 +12,12 @@ import Link from 'next/link';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { RegistrationFormData } from '@/components/RegistrationForm';
 import { Separator } from '@/components/ui/separator';
+
+// export async function generateStaticParams() {
+//     return (
+//         {department : "Electronics"}
+//     )
+// }
 
 interface Message {
   id: number;
@@ -32,14 +36,20 @@ const yearTitles: Record<number, string> = {
   3: 'Senior',
   4: 'Super senior',
 };
-
-export default function DepartmentChatPage({ params }: { params: { department: string }}) {
+type Props = {
+    params: Promise<{
+      department: string;
+    }>
+  };
+  
+  export default async function DepartmentChatPage({ params }: Props) {
+  const { department } = await params;
   const { registeredUser, messages, addMessage, students } = useContext(RegistrationContext);
   const [newMessage, setNewMessage] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const router = useRouter();
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const departmentName = params.department.charAt(0).toUpperCase() + params.department.slice(1);
+  const departmentName = department.charAt(0).toUpperCase() + department.slice(1);
 
   const firstYearStudents = (students[departmentName] || []).filter(s => s.year === 1);
   const firstYearStudentNames = new Set(firstYearStudents.map(s => s.name));
@@ -70,12 +80,12 @@ export default function DepartmentChatPage({ params }: { params: { department: s
   };
 
   const handleTitleClick = () => {
-    if (params.department === 'electronics') {
+    if (department === 'electronics') {
         setIsSidebarOpen(true);
     }
   };
 
-  if (params.department !== 'electronics') {
+  if (department !== 'electronics') {
     return (
         <AppLayout>
             <div className="flex-grow container mx-auto flex items-center justify-center">
@@ -97,7 +107,7 @@ export default function DepartmentChatPage({ params }: { params: { department: s
 
   return (
     <div className="h-full flex flex-col">
-    <AppLayout hideFooter title={departmentName} onTitleClick={params.department === 'electronics' ? handleTitleClick : undefined}>
+    <AppLayout hideFooter title={departmentName} onTitleClick={department === 'electronics' ? handleTitleClick : undefined}>
         <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
             <SheetContent>
                 <SheetHeader>
@@ -116,13 +126,13 @@ export default function DepartmentChatPage({ params }: { params: { department: s
                 <div className="py-4 space-y-4">
                     <div className="space-y-2">
                         <h3 className="text-sm font-medium text-muted-foreground px-2">Resources</h3>
-                        <Link href={`/chat/${params.department}/media`} passHref>
+                        <Link href={`/chat/${department}/media`} passHref>
                             <Button variant="ghost" className="w-full justify-start gap-2">
                                 <ImageIcon className="w-5 h-5" />
                                 <span>Media & Gallery</span>
                             </Button>
                         </Link>
-                        <Link href={`/chat/${params.department}/documents`} passHref>
+                        <Link href={`/chat/${department}/documents`} passHref>
                             <Button variant="ghost" className="w-full justify-start gap-2">
                                 <FileText className="w-5 h-5" />
                                 <span>Documents</span>

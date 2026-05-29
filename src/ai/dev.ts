@@ -1,4 +1,4 @@
-import { config } from 'dotenv';
+import {config} from "dotenv"
 config();
 
-import '@/ai/flows/suggest-links.ts';
+export const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
